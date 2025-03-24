@@ -20,7 +20,7 @@ from functools import wraps
 import os
 
 app = Flask(__name__)
-app.config["SECRET_KEY"] = "a9094-5306-6752-6180"
+app.config["SECRET_KEY"] = ""
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 app.teardown_appcontext(close_db)
