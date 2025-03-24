@@ -1,0 +1,289 @@
+/*GENERAL*/
+a{
+    text-decoration:none;
+    align-self: center;
+}
+
+h3{
+    text-align: center;
+}
+
+ul, ol{
+    list-style-type: none;
+}
+
+:visited{
+    color:blue;
+}
+
+body{
+    background-color: cornsilk;
+    font-family:Verdana, Arial, Tahoma, sans-serif;
+    margin:0 auto
+}
+
+table,td,th{
+    border-collapse: collapse;
+    border:1px solid black;
+}
+
+tr:nth-child(even){
+    background-color: #d1eb90;
+    
+}
+
+tr:nth-child(odd){
+    background-color:#b6df4f ;
+}
+
+textarea{
+    resize: none;
+    width:20em;
+    height:5em;
+}
+
+.bottom{
+    background-color:#212121;
+    margin-bottom:0rem;
+    width:100%;
+    color:#fafafa;
+}
+
+.bottom>p{
+    padding:1em;
+}
+
+/*index.html*/
+#index-main {
+    text-align: center;
+    background-image: url(images/livingroom.jpg);
+    background-size:cover;
+    background-position:center;
+    width:100%;
+    margin-top:0;
+    padding: 15em 0em;
+}
+
+#index-main h1 {
+    /*resource used: https://wpshout.com/quick-guides/create-text-outline-css/*/
+    font-size: 4em;
+    display: inline-block;
+    color:#93c022;
+    text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+}
+
+#index-main a{
+    background-color: cornsilk;
+    color:#93c022;
+    padding:1em;
+    border:3px solid black;
+    border-radius:1em;
+}
+
+
+
+/*base.html*/
+header{
+    background-color:#93c022;
+    /* padding:1em; */
+    display:flex;
+    justify-content: space-evenly;
+}
+
+header a > img{
+    width:5em;
+}
+
+nav{
+    background-color:#f5f5f5;
+    margin: 0 auto;
+    padding:1em;
+    display:flex;
+    justify-content: space-evenly;
+    border:3px solid #d0d0d0;
+}
+
+nav a{
+    border:3.5px solid #d0d0d0;
+    padding:0.5em;
+}
+
+/*properties.html*/
+#refine{
+    text-align:center;
+    border:3px solid black;
+    padding:1em;
+    margin-right:3.25em;
+    margin-top:1.15em;
+    font-size:2em;
+    background-color: #fafafa;
+    position:fixed;
+    right:0;
+}
+
+#properties>li>img{
+    width:35em;
+}
+
+@media screen and (min-width:1200px) {
+    #properties>li>img{
+        width:50em;
+    }
+}
+
+@media screen and (min-width:1560px) {
+    #properties>li>img{
+        width:60em;
+    }
+}
+
+#properties{
+    padding:1em;
+    float:left;
+}
+
+#properties li{
+    background-color:white ;
+    padding:.5em;
+}
+
+#properties li[class="price"]{
+    font-size: 1.5em;
+    padding:.25em;
+}
+
+/* @media screen and (min-width:768px) {
+    
+} */
+
+/*listing_form.html*/
+form{
+    margin:1em auto;
+    padding:2em 3em;
+    text-align: center;
+    width:fit-content;
+    background-color: whitesmoke;
+    border:4px solid black;
+    border-radius: 1em;
+}
+
+#listing input, #listing select, #listing textarea{
+    padding:1em;
+    margin:1em;
+    border:1px solid black
+}
+
+/*property.html*/
+ol{
+    width:fit-content;
+    padding:0;
+}
+
+ol img{
+    width:50em;
+    padding-bottom:0.5em;
+}
+
+ol li+li{
+    padding-bottom:0.5em;
+    margin-left:1em;
+}
+
+ol li[class="price"]{
+    font-size: 2em;
+}
+
+h2, p, .mortgage, #review{
+    text-align: center;
+}
+
+h2{
+    margin-top:2em;
+}
+
+main{
+    background-color: white;
+    width:fit-content;
+    margin:1em auto;
+    
+}
+
+.mortgage ul{
+    text-align: center;
+    display:inline
+}
+
+section:not(.intro){
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width:100%;
+    gap: 10px;
+}
+
+.review{
+    border:4px solid #93c022;
+    justify-self: center;
+    width:75%;
+}
+
+.footer img{
+    width:30em;
+    border:3px solid #93c022;
+}
+
+.footer h3{
+    text-align: center;
+}
+
+.footer table{
+    width:100%;
+    border:0px;
+}
+
+.footer tr{
+    width:fit-content;
+    border:0px;
+}
+.footer td{
+    display:block;
+    background-color:white;
+    border:0px;
+}   
+
+.footer section{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.review>li:first-child{
+    font-weight:bold;
+}
+
+.intro{
+    display:grid;
+    grid-template-rows: 1fr 1fr;
+    justify-items: center;
+}
+
+.intro h3{
+    grid-row:1;
+}
+
+.intro p{
+    grid-row:2;
+    padding:0 14em;
+}
+
+.footer ul{
+    background-color:white;
+
+}
+
+.footer li{
+    justify-self: left;
+    width:20%;
+}

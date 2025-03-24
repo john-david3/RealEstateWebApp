@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title_content %}
+    <title>Celsius+ Profile</title>
+{% endblock %}
+
+{% block main_content %}
+
+
+    {% if enquiries %}
+        <h2>Enquiries</h2>
+            <table>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Enquiry</th>
+                    <th>Name of Property</th>
+                    <th>Clear?</th>
+                </tr>
+                {% for row in enquiries %}
+                <tr>
+                    <td>{{ row['full_name'] }}</td>
+                    <td>{{ row['email'] }}</td>
+                    <td>{{ row['enquiry'] }}</td>
+                    <td>{{ row['property_name'] }}</td>
+                    <td><a href="{{ url_for('clear_enquiry', enquiry_id=row['enquiry_id'])}}">Clear enquiry</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+    {% endif %}
+
+    {% if bids %}
+        <h2>My Bids</h2>    
+            <table>
+                <tr>
+                    <th>Property Bid on</th>
+                    <th>Bid Amount</th>
+                </tr>
+
+                {% for bid in bids %}
+                {{ bids }}
+                {{ bid }}
+                <tr>
+                    <td>{{ bid['property'] }}</td>
+                    <td>{{ bid['amount'] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+    {% endif %}
+
+<h3>Change Password</h3>
+<form action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    {{ form.new_password.label }}
+    {{ form.new_password() }}
+    <br />
+    {{ form.confirm_new_password.label }}
+    {{ form.confirm_new_password() }}
+    <br />
+    {{ form.submit_password() }}
+</form>
+<p>{{ password_message }}</p>
+
+
+<h3>Change Username</h3>
+<form action="" method="post" novalidate>
+    {{ form2.hidden_tag() }}
+    {{ form2.new_username.label }}
+    {{ form2.new_username(value=session['username']) }}
+    <br />
+    {{ form2.submit_username() }}
+</form>
+<p>{{ username_message }}</p>
+
+{% endblock %}
+

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        {% block title_content %}
+        {% endblock %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+        <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" />
+    </head>
+    <body>
+        <header>
+            {% if g.user %}
+                <a href="{{ url_for('index')}}"><img src="{{ url_for('static', filename='images/celsius.png') }}" /></a>
+                <h1>Celsius+ Real Estate</h1>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            {% else %}
+                <a href="{{ url_for('index')}}"><img src="{{ url_for('static', filename='images/celsius.png') }}" /></a>
+                <h1>Celsius+ Real Estate</h1>
+                <a href="{{ url_for('login') }}">Login</a>
+            {% endif %}
+        </header>
+        <nav>
+            {% if g.user %}
+                <p><a href="{{ url_for('listing') }}">List a Property</a></p>
+                <p><a href="{{ url_for('properties') }}">Properties</a></p>
+                <p><a href="{{ url_for('wishlist') }}">My Wishlist</a></p>
+                <p><a href="{{ url_for('profile') }}">Profile</a></p>
+                <p><a href="{{ url_for('admin') }}">Administrator</a></p>
+            {% else %}
+                <p><a href="{{ url_for('properties') }}">Properties</a></p>
+                <p><a href="{{ url_for('listing') }}">List a Property</a></p>
+                <p><a href="{{ url_for('profile') }}">Profile</a></p>
+            {% endif %}
+        </nav>
+        {% block main_content %}
+        {% endblock %}
+        {% if g.user %}
+            <p>Username: {{ g.user }}</p>
+        {% endif %}
+    </body>
+</html>

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title_content %}
+    <title>Celsius+ Bid</title>
+{% endblock %}
+
+{% block main_content %}
+
+    <form action="" method="post" novalidate>
+        
+        {{ form.hidden_tag() }}
+        {{ form.bid_amount.label }}
+        {{ form.bid_amount(value=current_highest_bid) }}
+        {% for error in form.bid_amount.errors %}
+            {{ error }}
+        {% endfor %}
+        <br />
+        {{ form.submit() }}
+        <p>{{ message }}</p>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title_content %}
+    <title>{{ property['address'] }}</title>
+{% endblock %}
+
+{% block main_content %}
+<main>
+    <ol>
+        <li><img src="{{ url_for('static', filename='images/' + property['photo']) }}" /></li>
+        <li>{{ property['address'] }}, {{  property['county'] }}, {{ property['post_code'] }}</li>
+        <li class="price">€{{ property['price'] }}</li>
+        <li>{{ property['house_type'] }}</li>
+        <li>Beds:{{ property['bedroom'] }} | Baths:{{ property['bathroom'] }}</li>
+        <li>Owner's Description:{{ property['description'] }}</li>
+        <li>
+            <form action="" method="post" novalidate>
+                {{ form3.hidden_tag() }}
+                {{ form3.submit_wishlist() }}
+            </form>
+        </li>
+    </ol>
+
+    <h2>Current Highest Bid</h2>
+    <p>To place a bid, please add property to wishlist</p>
+    <p>€{{ property['bid_amount'] }}</p>
+
+    <h2>Contact the seller</h2>
+    <p>{{ property['full_name'] }}</p>
+    <p>{{ property['email'] }}</p> 
+    
+    <h3>Enquiries to Seller</h3>
+    <form action="" method="post" novalidate>
+        {{ form4.hidden_tag() }}
+        {{ form4.full_name.label }}
+        {{ form4.full_name() }}
+        <br />
+        {{ form4.email.label }}
+        {{ form4.email() }}
+        <br />
+        {{ form4.enquiry.label }}
+        {{ form4.enquiry() }}
+        <br />
+        {{ form4.submit_enquiry() }}
+    </form>
+
+    <h2 class="mortgage">Mortgage Calculator</h2>
+    <form action="" method="post" novalidate class="mortgage">
+        {{ form.hidden_tag() }}
+        <p>House price: {{ property["price"] }}</p>
+        <br />
+        {{ form.period.label() }}
+        {{ form.period() }}
+        <br />
+        {{ form.submit() }}
+    </form>
+    <p>€{{ monthly }} gross per month</p>
+    <p>€{{ yearly }} gross per year</p>
+    <p>Net price: €{{ total }}</p>
+
+    <h2>Comments</h2>
+    <form action="" method="post" novalidate id="review">
+        {{ form2.hidden_tag() }}
+        {{ form2.review() }}
+        {% for error in form2.review.errors %}
+            {{ error }}
+        {% endfor %}
+        <br />
+        {{ form2.submit_review() }}
+    </form>
+    <p>{{ comment }} </p>
+    <br />
+    <section>
+    {% for prop_review in reviews %}
+        <ul class="review">
+            <li>{{ prop_review['user_id'] }}</li>
+            <li>{{ prop_review['review'] }}</li>
+        </ul>
+    {% endfor %}
+    </section>
+    
+</main>
+<h3>Similar Properties</h3>
+        
+        {% if suggested_properties %}
+        <section class="footer">
+        <table>
+            {% for suggested_property in suggested_properties %}
+                <ul>
+                    <li><img src="{{ url_for('static', filename='images/' + suggested_property['photo']) }}" /></li>
+                    <li><a href="{{ url_for('property', property_id=suggested_property['property_id']) }}">{{ suggested_property['address'] }}, {{ suggested_property['county'] }}</a></li>
+                    <li>€{{ suggested_property['price'] }}</li>
+                </ul>
+            {% endfor %}
+        </table>
+        </section>
+        {% endif %}
+
+    
+
+{% endblock %}

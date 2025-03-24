@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title_content %}
+    <title>Celsius+ Real Estate</title>
+{% endblock %}
+
+{% block main_content%}
+    <main id="index-main">
+        <h1>WELCOME TO CELSIUS+</h1>
+        <p><a href="{{ url_for('properties') }}">Begin browsing</a></p>
+    </main>
+    <section class="intro">
+        <h2>What is Celsius+</h2>
+        <p>Celsius is the world's Real Estate Agency. We offer a large selection of properties for potential buyers. With our handy
+            mortgage calculator you can estimate how much your mortgage may cost. Here at Celsius+, we will make Real Estate great again.
+        </p>
+    </section>
+    <section class="footer">
+        {% if viewed_properties %}
+        <h3>Recently Viewed</h3>
+            {% for viewed_property in viewed_properties %}
+                <section>
+                    <p><img src="{{ url_for('static', filename='images/' + viewed_property['photo']) }}" /></p>
+                    <p><a href="{{ url_for('property', property_id=viewed_property['property_id'])}}">{{ viewed_property['address'] }}, {{viewed_property['county']}}</a></p>
+                </section>
+            {% endfor %}
+        {% endif %}
+    </section>
+
+    <footer>
+        <p>Find full credits <a href="{{ url_for('static', filename='credits.pdf') }}">here</a></p>
+    </footer>
+{% endblock %}
+

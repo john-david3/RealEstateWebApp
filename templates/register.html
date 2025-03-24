@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title_content %}
+    <title>Celsius+ Register</title>
+{% endblock %}
+
+{% block main_content %}
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        {{ form.username.label }}
+        {{ form.username() }}
+        {% for error in form.username.errors %}
+            {{ error }}
+        {% endfor %}
+        <br />
+        {{ form.email.label }}
+        {{ form.email() }}
+        {% for error in form.email.errors %}
+            {{ error }}
+        {% endfor %}
+        <br />
+        {{ form.password.label }}
+        {{ form.password() }}
+        <br />
+        {{ form.password2.label }}
+        {{ form.password2() }}
+        <br />
+        {{ form.submit() }}
+    </form>
+    
+{% endblock %}
+

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title_content %}
+    <title>My Wishlist</title>
+{% endblock %}
+
+{% block main_content%}
+    <h1>My Wishlist</h1>
+        {% if wishlist %}
+            <table>
+                <tr>
+                    <th>Address</th>
+                    <th>Remove?</th>
+                    <th>Place a Bid</th>
+                </tr>
+                {%for property_id in wishlist %}
+                <tr>
+                    <td><a href="{{ url_for('property', property_id=property_id)}}">{{ places[property_id] }}</a></td>  
+                    <td><a href="{{ url_for('remove_from_wishlist', property_id=property_id)}}">Remove from Wishlist</td>
+                    <td><a href="{{ url_for('bid', property_id=property_id) }}">Bid</a></td>
+                </tr>
+            {% endfor %}
+            </table>
+        {% else %}
+            <p>Wishlist is empty!</p>
+        {% endif %}
+
+
+{% endblock %}
+

@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title_content %}
+    <title>Celsius+ Admin</title>
+{% endblock %}
+
+{% block main_content %}
+
+    {% if users %}
+        
+        <table>
+            <tr>
+                <th>Username</th>
+                <th>Ban?</th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{ user['user_id'] }}</td>
+                <td><a href="{{ url_for('ban_user', user_id=user['user_id']) }}">Ban User</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+    {% else %}
+        <p>No user's. L for you</p>
+    {% endif %}
+    <br />
+    {% if listings %}
+        
+        <table>
+            <tr>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>County</th>
+                <th>Post Code</th>
+                <th>Price</th>
+                <th>House Type</th>
+                <th>Bedrooms</th>
+                <th>Bathrooms</th>
+                <th>Description</th>
+                <th>Name of image</th>
+                <th colspan="2">Decision</th>
+                
+
+            </tr>
+            {% for listing in listings %}
+            <tr>
+                <td>{{ listing['full_name'] }}</td>
+                <td>{{ listing['email'] }}</td>
+                <td>{{ listing['address'] }}</td>
+                <td>{{ listing['county'] }}</td>
+                <td>{{ listing['post_code'] }}</td>
+                <td>{{ listing['price'] }}</td>
+                <td>{{ listing['house_type'] }}</td>
+                <td>{{ listing['bedroom'] }}</td>
+                <td>{{ listing['bathroom'] }}</td>
+                <td>{{ listing['description'] }}</td>
+                <td>{{ listing['photo'] }}</td>
+                <td><a href="{{ url_for('approve', property_id=listing['property_id']) }}">Approve</a></td>
+                <td><a href="{{ url_for('decline', property_id=listing['property_id']) }}">Decline</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+       
+    {% else %}
+        <p>No property listings to approve. Whew</p>
+    {% endif %}
+
+        
+
+{% endblock %}
+

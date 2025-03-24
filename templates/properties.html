@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title_content %}
+    <title>Celsius+ Properties</title>
+{% endblock %}
+
+{% block main_content %}
+    <main>
+        <form action="" method="post" novalidate id="refine">
+            {{ form.hidden_tag() }}
+            {{ form.county.label }}
+            {{ form.county() }}
+            <br />
+            {{ form.min_price.label }}
+            {{ form.min_price() }}
+            <br />
+            {{ form.max_price.label }}
+            {{ form.max_price() }}
+            <br />
+            {{ form.bedrooms.label }}
+            {{ form.bedrooms() }}
+            <br />
+            {{ form.bathrooms.label }}
+            {{ form.bathrooms() }}
+            <br />
+            {{ form.house_type.label }}
+            {{ form.house_type() }}
+            <br />
+            {{ form.submit() }}
+        </form>
+        
+        {% for property in filters %}
+        <ul id="properties">
+            <li><img src="{{ url_for('static', filename='images/' + property['photo']) }}" class="photo"/></li>
+            <li><a href="{{ url_for('property', property_id=property['property_id'] ) }}">{{ property['address'] }}, {{ property['county'] }}</a></li>
+            <li class="price">€{{ property['price'] }}</li>
+            <li>Beds:{{ property['bedroom'] }} | Baths:{{ property['bathroom'] }}</li>     
+        </ul>
+        {% endfor %}
+   
+    </main>
+
+
+
+
+{% endblock %}
+
